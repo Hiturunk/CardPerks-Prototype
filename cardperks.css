@@ -1,0 +1,9 @@
+img {
+  height:50px;
+  width:50px;
+  border: dotted;
+  border-radius:100%;
+}
+div {
+  border: ridge;
+}
