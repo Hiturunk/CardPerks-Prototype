@@ -1,3 +1,4 @@
+var cardArray = [];
 function checkForWebStorage(){
   if(typeof(Storage) !== "undefined") {
     return 0;
@@ -18,26 +19,30 @@ function addCard(){
   var l = prompt("Please give a card limit","0");
   var bD = prompt("Please give a billing date","1/1/2000");
   var nN = prompt("Please give a descriptive name","Regions Checking");
-  var cardInstance = new cardConstuctor(b,l,bD,nN);
+  var cardInstance = new cardConstructor(b,l,bD,nN);
+  cardArray.push(cardInstance);
 }
 function start(){
-  var container = document.createElement("div");
-    container.id="container";
-  var menuBar = document.createElement("div");
-    menuBar.id="menuBar";
-  var rezIcon = document.createElement("img");
-    rezIcon.src="toggleTable.jpg";
-    rezIcon.setAttribute("onclick","rezTable()");
-  var addCardIcon = document.createElement("img");
-    addCardIcon.src="addCardIcon.jpg";
-    addCardIcon.setAttribute("onclick","addCard()");
-  var hideIcon = document.createElement("img");
-    hideIcon.src="hideIcon.jpg";
-    hideIcon.setAttribute("onclick","hideTable()");
-  menuBar.appendChild(rezIcon);
-  menuBar.appendChild(addCardIcon);
-  container.appendChild(menuBar);
-  document.body.appendChild(container);
+  var a = checkForWebStorage();
+  if(a==0){
+    var container = document.createElement("div");
+      container.id="container";
+    var menuBar = document.createElement("div");
+      menuBar.id="menuBar";
+    var rezIcon = document.createElement("img");
+      rezIcon.src="toggleTable.jpg";
+      rezIcon.setAttribute("onclick","rezTable()");
+    var addCardIcon = document.createElement("img");
+      addCardIcon.src="addCardIcon.jpg";
+      addCardIcon.setAttribute("onclick","addCard()");
+    menuBar.appendChild(rezIcon);
+    menuBar.appendChild(addCardIcon);
+    container.appendChild(menuBar);
+    document.body.appendChild(container);
+    }
+  else{
+    alert("Error, unable to initialize.");
+  }
 }
 function checkForTable(){
   if(document.getElementById("cardTable")){
@@ -56,15 +61,26 @@ function removeTable(){
   else {
     console.log("No table to remove.");
   }
+}
 
-    function rezTable(){
+  function rezTable(){
+    var a = checkForTable();
+    if(a==1){
       var target = document.getElementById("container");
       var table = document.createElement("table");
-      table.id="cardTable";
-      var row = document.createElement("tr");
-      var cell = document.createElement("td");
-      row.appendChild(cell);
-      table.appendChild(row);
+        table.id="cardTable";
+      for(i=0;i<cardArray.length;i++){
+        var row = document.createElement("tr");
+        var cell = document.createElement("td");
+        cardEx = cardArray[i];
+        cell.innerHTML = "Name:" + cardEx.nickName + " " + "Limit:" + cardEx.limit + " " + "Balance:" + cardEx.balance; + " " + "Billing Date:" + cardEx.billinDate; " ";
+        row.appendChild(cell);
+        table.appendChild(row)
+      }
       target.appendChild(table);
-}
+    }
+    else{
+      console.log("table already exists");
+      removeTable();
+    }
 }
