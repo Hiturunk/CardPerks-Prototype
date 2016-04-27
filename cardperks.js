@@ -9,10 +9,16 @@ function checkForWebStorage(){
   }
 }
 function cardConstructor(balance,limit,billingDate,nickName){
-  this.balance = balance;
-  this.limit = limit;
+  this.balance = parseInt(balance);
+  this.limit = parseInt(limit);
   this.billingDate = billingDate;
   this.nickName = nickName;
+  this.incrementBalance = function(v){
+    this.balance = this.balance + v;
+  }
+  this.decrementBalance = function(v){
+    this.balance = this.balance - v;
+  }
 }
 function addCard(){
   var b = prompt("Please give a card balance","0");
