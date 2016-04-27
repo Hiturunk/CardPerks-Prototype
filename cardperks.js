@@ -20,6 +20,16 @@ function cardConstructor(balance,limit,billingDate,nickName){
     this.balance = this.balance - v;
   }
 }
+function refreshTable(){
+  var a = checkForTable();
+  if(a==0){
+    removeTable();
+    rezTable();
+  }
+  else{
+    console.log("Not necessary to refresh.");
+  }
+}
 function addCard(){
   var b = prompt("Please give a card balance","0");
   var l = prompt("Please give a card limit","0");
@@ -27,6 +37,7 @@ function addCard(){
   var nN = prompt("Please give a descriptive name","Regions Checking");
   var cardInstance = new cardConstructor(b,l,bD,nN);
   cardArray.push(cardInstance);
+  refreshTable();
 }
 function start(){
   var a = checkForWebStorage();
