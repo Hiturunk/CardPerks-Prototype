@@ -28,6 +28,7 @@ function refreshTable(){
   }
   else{
     console.log("Not necessary to refresh.");
+    rezTable();
   }
 }
 function addCard(){
