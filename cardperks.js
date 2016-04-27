@@ -91,7 +91,15 @@ function removeTable(){
         var row = document.createElement("tr");
         var cell = document.createElement("td");
         cardEx = cardArray[i];
+        var addButton = document.createElement("button");
+          addButton.setAttribute("onclick","addBalance()")
+          addButton.innerHTML = "+ Balance";
+        var subtractButton = document.createElement("button");
+          subtractButton.setAttribute("onclick","subtractBalance()");
+          subtractButton.innerHTML = "- Balance";
         cell.innerHTML = "Name:" + cardEx.nickName + " " + "Limit:" + cardEx.limit + " " + "Balance:" + cardEx.balance; + " " + "Billing Date:" + cardEx.billinDate; " ";
+        cell.appendChild(addButton);
+        cell.appendChild(subtractButton);
         row.appendChild(cell);
         table.appendChild(row)
       }
