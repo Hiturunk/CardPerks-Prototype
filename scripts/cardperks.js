@@ -48,11 +48,13 @@ function start(){
     var menuBar = document.createElement("div");
       menuBar.id="menuBar";
     var rezIcon = document.createElement("img");
-      rezIcon.src="toggleTable.jpg";
+      rezIcon.setAttribute("class","ui-icon  ui-icon-calendar");
       rezIcon.setAttribute("onclick","rezTable()");
+      rezIcon.setAttribute('id',"button");
     var addCardIcon = document.createElement("img");
-      addCardIcon.src="addCardIcon.jpg";
+      addCardIcon.setAttribute("class","ui-icon ui-icon-circle-plus");
       addCardIcon.setAttribute("onclick","addCard()");
+      addCardIcon.setAttribute('id',"button");
     menuBar.appendChild(rezIcon);
     menuBar.appendChild(addCardIcon);
     container.appendChild(menuBar);
