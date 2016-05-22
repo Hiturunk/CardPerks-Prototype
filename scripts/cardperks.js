@@ -56,7 +56,7 @@ function start(){
     menuBar.appendChild(rezIcon);
     menuBar.appendChild(addCardIcon);
     container.appendChild(menuBar);
-    document.body.appendChild(container);
+    $('body').append(container);
     }
   else{
     alert("Error, unable to initialize.");
